@@ -1,20 +1,26 @@
-#!/usr/bin/env python
+from setuptools import setup, find_packages
 
-from distutils.core import setup
-
-try:
-    import pynocle
-except ImportError:
-    pynocle = None
-
-setup(name="pynocle",
-      version=pynocle.__version__,
-      author=pynocle.__author__,
-      author_email=pynocle.__email__,
-      url="http://code.google.com/p/pynocle/",
-      description="Software metrics for your python code",
-      long_description=open('README.txt').read(),
-      license='GPL',
-      packages=['', 'cyclcompl', 'depgraph', 'inheritance', 'sloc'],
-      install_requires=['numpy', 'coverage']
-     )
+setup(
+    name='pynocle',
+    version='0.2dev',
+    description="Software metrics for your python code",
+    long_description=open('README.txt').read(),
+    # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers
+    classifiers=[
+        "Programming Language :: Python",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+    ],
+    keywords='coverage cyclomatic complexity',
+    author='Rob Galanakis',
+    author_email='rob.galanakis@gmail.com',
+    url="http://code.google.com/p/pynocle/",
+    package_dir={'': 'src'},
+    packages=find_packages('src'),
+    install_requires=[
+        'coverage',
+    ],
+    entry_points="""
+    [console_scripts]
+    pynocle = pynocle.pynocle:main
+   """,
+)
